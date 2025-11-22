@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #12312a;
+  --foreground: #e8f5f3;
+  --fa-style-family-classic: "Font Awesome 6 Pro";
+  --fa-font-thin: normal 100 1em / 1 "Font Awesome 6 Pro";
+  --fa-font-light: normal 300 1em / 1 "Font Awesome 6 Pro";
+  --fa-font-regular: normal 400 1em / 1 "Font Awesome 6 Pro";
+  --fa-font-semibold: normal 600 1em / 1 "Font Awesome 6 Pro";
+  --fa-font-bold: normal 700 1em / 1 "Font Awesome 6 Pro";
 }
 
 @theme inline {
@@ -12,11 +18,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -24,3 +28,192 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(18, 49, 42, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #21705e, #12312a);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #21705e, #12312a);
+}
+
+/* Hamburger middle stroke */
+.middle-stroke {
+  stroke: #E88873 !important;
+}
+
+/* Sliding panel animation */
+@keyframes leftSlideDown {
+  from {
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateY(-20%);
+  }
+}
+
+@keyframes leftSlideUp {
+  from {
+    transform: translateY(-20%);
+  }
+  to {
+    transform: translateY(-120%);
+  }
+}
+
+@keyframes rightSlideDown {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes rightSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+
+/* left panel */
+.slide-down-left-panel {
+  background-color: #E88873;
+  border-radius: 0 0 9999px 9999px;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3), 4px 0 16px rgba(0, 0, 0, 0.3);
+  animation: leftSlideDown 1s cubic-bezier(0.5, 0.03, 0, 1) forwards;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.slide-up-left-panel {
+  background-color: #E88873;
+  border-radius: 0 0 9999px 9999px;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3), 4px 0 16px rgba(0, 0, 0, 0.3);
+  animation: leftSlideUp 1s cubic-bezier(0.5, 0.03, 0, 1) forwards;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+/* right panel */
+.slide-down-right-panel {
+  background-color: #FFE8D6;
+  border-radius: 9999px 9999px 0 0;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3);
+  animation: rightSlideUp 1s cubic-bezier(0.5, 0.03, 0, 1) forwards;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.slide-up-right-panel {
+  background-color: #FFE8D6;
+  border-radius: 9999px 9999px 0 0;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.3);
+  animation: rightSlideDown 1s cubic-bezier(0.5, 0.03, 0, 1) forwards;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+/* Circle reveal animation */
+@keyframes circleReveal {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  to {
+    width: 40vh;
+    height: 40vh;
+    opacity: 1;
+  }
+}
+
+.circle-reveal {
+  position: fixed;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: rgb(33, 100, 85);
+  animation: circleReveal 0.8s cubic-bezier(0.25, 0.46, 0, 1.22) forwards 0.5s;
+  pointer-events: none;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sequential nav item appearance */
+@keyframes itemSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes itemSlideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.nav-item {
+  animation: itemSlideUp 0.5s ease-out forwards 0.5s;
+}
+
+.nav-item.closing {
+  animation: itemSlideDown 0.5s ease-in forwards;
+}
+
+.nav-item-1 { animation-delay: 0.5s; }
+.nav-item-2 { animation-delay: 0.65s; }
+.nav-item-3 { animation-delay: 0.8s; }
+.nav-item-4 { animation-delay: 0.95s; }
+.nav-item-5 { animation-delay: 1.1s; }
+
+.nav-item-1.closing { animation-delay: 0s; }
+.nav-item-2.closing { animation-delay: 0.15s; }
+.nav-item-3.closing { animation-delay: 0.3s; }
+.nav-item-4.closing { animation-delay: 0.45s; }
+.nav-item-5.closing { animation-delay: 0.6s; }
+
+@keyframes circleShrink {
+  from {
+    width: 40vh;
+    height: 40vh;
+    opacity: 1;
+  }
+  to {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+}
+
+.circle-reveal.closing {
+  animation: circleShrink 0.8s cubic-bezier(0.5, 0.03, 0, 1) forwards 0.8s;
+}
+
