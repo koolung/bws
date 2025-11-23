@@ -47,6 +47,21 @@ body {
   background: linear-gradient(180deg, #21705e, #12312a);
 }
 
+/* Loading overlay z-index */
+.loading-overlay {
+  z-index: 99999;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Curtain overlay z-index */
+.curtain-overlay {
+  z-index: 99998;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Header during loading */
 /* Hamburger middle stroke */
 .middle-stroke {
   stroke: #E88873 !important;

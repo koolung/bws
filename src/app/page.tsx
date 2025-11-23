@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Carousel from '@/components/Carousel';
 import Clients from '@/components/Clients';
 import Pricing from '@/components/Pricing';
@@ -8,8 +10,40 @@ import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 export default function Home() {
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
+      {/* Logo Loading Animation */}
+      {!showContent && (
+        <div className="fixed inset-0 z-999bg-[#21705e] flex items-center justify-center pointer-events-auto loading-overlay">
+          <Image
+            src="/images/logo/logo.gif"
+            alt="Loading"
+            width={200}
+            height={200}
+            priority
+            unoptimized
+          />
+        </div>
+      )}
+
+      {/* Curtain lift overlay */}
+      <div
+        className={`fixed inset-0 bg-[#21705e] transition-transform duration-1000 ease-out curtain-overlay ${
+          showContent ? 'translate-y-full' : 'translate-y-0'
+        }`}
+        style={{ pointerEvents: showContent ? 'none' : 'auto' }}
+      ></div>
+
       {/* Hero Section */}
       <section id="home" className="min-h-[80vh] flex flex-col items-center justify-center pt-40 pb-20 px-4 relative">
         {/* White background behind carousel */}

@@ -10,6 +10,15 @@ export default function Header() {
   const [showCircle, setShowCircle] = useState(false);
   const [showNavItems, setShowNavItems] = useState(false);
   const [scrollOpacity, setScrollOpacity] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +48,10 @@ export default function Header() {
       }, 1100); // 0.3s delay + 0.8s circle animation
     }
   };
+
+  if (isLoading) {
+    return null;
+  }
 
   const navLinks = [
     { href: '#home', label: 'Home' },
