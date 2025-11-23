@@ -95,7 +95,7 @@ export default function Header() {
           <div className="md:hidden">
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-teal-300 hover:text-white hover:bg-teal-800 transition duration-150 ease-in-out"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-white/20 transition duration-150 ease-in-out"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>

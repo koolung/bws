@@ -6,27 +6,27 @@ export default function Carousel() {
   const slides = [
     {
       id: 1,
-      title: 'Design',
-      caption: 'Crafting beautiful and intuitive user interfaces',
-      color: 'from-teal-500 to-emerald-600',
+      title: "Happy Harry's",
+      caption: 'Modern E-commerce Platform',
+      image: '/images/mockups/hh_mockup1.png',
     },
     {
       id: 2,
-      title: 'Develop',
-      caption: 'Building robust and scalable web applications',
-      color: 'from-emerald-500 to-cyan-600',
+      title: 'First Choice Haircutters',
+      caption: 'Trendy Salon Website',
+      image: '/images/mockups/fc_mockup1.png',
     },
     {
       id: 3,
-      title: 'Deploy',
-      caption: 'Launching your projects with confidence',
-      color: 'from-cyan-500 to-teal-600',
+      title: 'Siravista',
+      caption: 'Highend Custom Web Design',
+      image: '/images/mockups/siravista_mockup1.png',
     },
     {
       id: 4,
-      title: 'Optimize',
-      caption: 'Ensuring peak performance and reliability',
-      color: 'from-teal-500 to-emerald-700',
+      title: 'Beaute Lia Hair',
+      caption: 'Custom Membership Management System',
+      image: '/images/mockups/mms_mockup1.png',
     },
   ];
 
@@ -105,7 +105,7 @@ export default function Carousel() {
       {/* Carousel Container */}
       <div
         ref={containerRef}
-        className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden cursor-grab active:cursor-grabbing"
+        className="relative w-full h-64 md:h-80 overflow-hidden cursor-grab active:cursor-grabbing"
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onTouchStart={handleTouchStart}
@@ -120,15 +120,12 @@ export default function Carousel() {
           {slides.map((slide) => (
             <div
               key={slide.id}
-              className={`min-w-full h-full bg-gradient-to-br ${slide.color} flex items-center justify-center relative`}
+              className="min-w-full h-full flex items-center justify-center relative bg-cover bg-center"
+              style={{ backgroundImage: `url(${slide.image})` }}
             >
               {/* Background overlay */}
               <div className="absolute inset-0 bg-black/10"></div>
 
-              {/* Slide content */}
-              <div className="relative z-10 text-center text-white">
-                <div className="text-6xl md:text-7xl font-bold opacity-20">{slide.id}</div>
-              </div>
             </div>
           ))}
         </div>
@@ -141,8 +138,8 @@ export default function Carousel() {
               onClick={() => setCurrent(index)}
               className={`transition-all duration-300 rounded-full ${
                 index === current
-                  ? 'bg-white w-8 h-2'
-                  : 'bg-white/40 hover:bg-white/60 w-2 h-2'
+                  ? 'bg-black w-8 h-2'
+                  : 'bg-black/40 hover:bg-black/60 w-2 h-2'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -151,17 +148,17 @@ export default function Carousel() {
       </div>
 
       {/* Title and Caption - Changes with slide */}
-      <div className="mt-8 text-center transition-all duration-500">
-        <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-300 to-emerald-400 bg-clip-text text-transparent mb-3">
+      <div className="mt-2 text-start transition-all duration-500">
+        <h3 className="text-medium md:text-4xl font-bold text-black uppercase">
           {slides[current].title}
         </h3>
-        <p className="text-lg md:text-xl text-teal-100 max-w-2xl mx-auto">
+        <p className="text-sm md:text-xl text-gray-600 max-w-2xl mx-auto">
           {slides[current].caption}
         </p>
       </div>
 
       {/* Slide counter */}
-      <div className="text-center mt-4 text-sm text-teal-300">
+      <div className="text-start text-sm text-gray-400">
         {current + 1} / {slides.length}
       </div>
     </div>
