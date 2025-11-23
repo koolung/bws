@@ -1,8 +1,8 @@
 'use client';
 
 import Carousel from '@/components/Carousel';
-import Features from '@/components/Features';
 import Clients from '@/components/Clients';
+import Pricing from '@/components/Pricing';
 import About from '@/components/About';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
@@ -14,7 +14,7 @@ export default function Home() {
       <section id="home" className="min-h-[80vh] flex flex-col items-center justify-center pt-40 pb-20 px-4 relative">
         {/* White background behind carousel */}
         <div className="absolute inset-0 pointer-events-none z-0">
-          <div className="absolute left-0 right-0 top-3/5 bottom-0 bg-white/75 backdrop-blur-sm"></div>
+          <div className="absolute left-0 right-0 top-3/5 bottom-0 bg-white/75 backdrop-blur-sm "></div>
         </div>
         
         <div className="text-center max-w-5xl w-full relative z-20">
@@ -38,8 +38,8 @@ export default function Home() {
       {/* Clients Section */}
       <Clients />
 
-      {/* Features Section */}
-      <Features />
+      {/* Pricing Section */}
+      <Pricing />
 
       {/* About Section */}
       <About />
