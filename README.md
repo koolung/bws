@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## BWS Blog System
 
-## Getting Started
+This project now ships with a lightweight publishing workflow:
 
-First, run the development server:
+- `/blog` – public article index
+- `/blog/[slug]` – individual article pages
+- `/admin` – password-gated dashboard for creating, editing, and deleting posts
+- `/api/blog/*` – REST endpoints powering the admin UI
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Database setup
+
+1. Create the MySQL schema (adjust database name/user as needed):
+
+```sql
+SOURCE db/mysql-init.sql;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Add a `.env` file with your connection string and optional admin key:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+DATABASE_URL="mysql://USER:PASSWORD@HOST:3306/bws_blog"
+NEXT_PUBLIC_ADMIN_KEY="set-a-strong-key"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Generate the Prisma client and run migrations:
 
-## Learn More
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Admin workflow
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Navigate to `/admin`.
+2. Enter the admin key (or leave blank if `NEXT_PUBLIC_ADMIN_KEY` is unset).
+3. Draft posts with title, excerpt, long-form content, and optional cover image.
+4. Use the inline controls to edit or delete existing posts. Changes are reflected instantly on the public blog.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Available scripts
 
-## Deploy on Vercel
+```bash
+npm run dev     # start Next.js locally
+npm run build   # production build
+npm run start   # run production server
+npm run lint    # lint source files
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Tech stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16 App Router
+- Prisma ORM + MySQL
+- RESTful API routes under `/api/blog`
+- Client-driven admin dashboard that talks to the API
+
+> ⚠️ The built-in admin key gate is intentionally lightweight and suited for internal deployments. For production, layer on a proper auth provider (Clerk, Auth0, etc.) or restrict `/admin` behind middleware.
