@@ -24,7 +24,7 @@ export default function Home() {
     <>
       {/* Logo Loading Animation */}
       {!showContent && (
-        <div className="fixed inset-0 z-999bg-[#21705e] flex items-center justify-center pointer-events-auto loading-overlay">
+        <div className="fixed inset-0 z-90 bg-[#21705e] flex items-center justify-center pointer-events-auto loading-overlay">
           <Image
             src="/images/logo/logo.gif"
             alt="Loading"
