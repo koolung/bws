@@ -28,7 +28,7 @@ export default function Home() {
           <Image
             src="/images/logo/logo.gif"
             alt="Loading"
-            width={200}
+            width={350}
             height={200}
             priority
             unoptimized
