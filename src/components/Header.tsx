@@ -10,6 +10,12 @@ export default function Header() {
   const [showCircle, setShowCircle] = useState(false);
   const [showNavItems, setShowNavItems] = useState(false);
   const [scrollOpacity, setScrollOpacity] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,8 +49,12 @@ export default function Header() {
   const navLinks = [
     { href: '#pricing', label: 'Pricing' },
     { href: '#about', label: 'About' },
-    { href: '#contact', label: 'Get Started' },
+    { href: '/questionnaire', label: 'Get Started' },
   ];
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <header className="fixed w-full top-0 z-90 bg-transparent backdrop-blur-md">
@@ -84,9 +94,9 @@ export default function Header() {
                   {link.label}
                 </a>
               ))}
-              <button className="ml-4 px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-teal-500/50 transition-all duration-200">
+              <Link href="/questionnaire" className="ml-4 px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-teal-500/50 transition-all duration-200">
                 Get Started
-              </button>
+              </Link>
             </div>
           </div>
 
