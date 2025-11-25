@@ -94,9 +94,9 @@ export default function Header() {
                   {link.label}
                 </a>
               ))}
-              <button className="ml-4 px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-teal-500/50 transition-all duration-200">
+              <Link href="/questionnaire" className="ml-4 px-4 py-2 bg-gradient-to-r from-teal-500 to-emerald-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-teal-500/50 transition-all duration-200">
                 Get Started
-              </button>
+              </Link>
             </div>
           </div>
 
