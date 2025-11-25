@@ -49,7 +49,7 @@ export default function Header() {
   const navLinks = [
     { href: '#pricing', label: 'Pricing' },
     { href: '#about', label: 'About' },
-    { href: '#contact', label: 'Get Started' },
+    { href: '/questionnaire', label: 'Get Started' },
   ];
 
   if (!isVisible) {
