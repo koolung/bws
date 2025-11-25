@@ -10,6 +10,12 @@ export default function Header() {
   const [showCircle, setShowCircle] = useState(false);
   const [showNavItems, setShowNavItems] = useState(false);
   const [scrollOpacity, setScrollOpacity] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +51,10 @@ export default function Header() {
     { href: '#about', label: 'About' },
     { href: '#contact', label: 'Get Started' },
   ];
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <header className="fixed w-full top-0 z-50 bg-transparent backdrop-blur-md">
