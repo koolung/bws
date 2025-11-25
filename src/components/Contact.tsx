@@ -15,7 +15,7 @@ export default function Contact() {
             We promise you'll be glad later.
           </p>
           <button className="px-10 py-4 bg-gradient-to-r from-teal-500 to-emerald-600 text-white text-lg rounded-lg font-semibold hover:shadow-2xl hover:shadow-teal-500/50 transition-all duration-300 transform hover:scale-105">
-            Contact Us
+            Get Started
           </button>
         </div>
       </section>
