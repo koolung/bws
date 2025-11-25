@@ -15,7 +15,7 @@ export interface EmailData {
   notes: string;
 }
 
-const LOGO_URL = 'https://bedfordwebservices.com/logo.png'; // Update with actual logo URL
+const LOGO_URL = 'https://bedfordwebservices.com/images/logo/logo_initial.svg';
 const BUSINESS_COLOR = '#21705e'; // Teal color from your site
 const ACCENT_COLOR = '#14b8a6'; // Lighter teal
 
@@ -58,6 +58,7 @@ export const getBusinessEmailTemplate = (data: EmailData): string => {
 <body>
   <div class="container">
     <div class="header">
+      <img src="${LOGO_URL}" alt="Bedford Web Services" style="height: 60px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
       <h1>New Questionnaire Submission</h1>
       <p>A new lead has submitted the questionnaire form</p>
     </div>
@@ -198,6 +199,7 @@ export const getClientEmailTemplate = (data: EmailData): string => {
 <body>
   <div class="container">
     <div class="header">
+      <img src="${LOGO_URL}" alt="Bedford Web Services" style="height: 60px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
       <h1>Thank You for Reaching Out!</h1>
       <p>We've received your questionnaire and can't wait to help</p>
     </div>
@@ -224,9 +226,6 @@ export const getClientEmailTemplate = (data: EmailData): string => {
         <div class="details">
           <div class="detail-item">
             <span class="detail-label">Service:</span> ${data.service.length > 0 ? data.service.join(', ') : 'Not specified'}
-          </div>
-          <div class="detail-item">
-            <span class="detail-label">Budget Range:</span> ${data.budget}
           </div>
           <div class="detail-item">
             <span class="detail-label">Email:</span> ${escapeHtml(data.email)}
