@@ -37,11 +37,7 @@ export default function RootLayout({
       >
         <LiquidEffect />
         <Header />
-<<<<<<< HEAD
         <main className="relative z-90">
-=======
-        <main className="relative z-10">
->>>>>>> main
           {children}
         </main>
       </body>

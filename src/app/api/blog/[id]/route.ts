@@ -3,11 +3,12 @@ import { prisma } from '@/lib/prisma';
 import { slugify } from '@/lib/slugify';
 
 interface RouteParams {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function GET(_: Request, { params }: RouteParams) {
-  const post = await prisma.blogPost.findUnique({ where: { id: Number(params.id) } });
+  const { id } = await params;
+  const post = await prisma.blogPost.findUnique({ where: { id: Number(id) } });
 
   if (!post) {
     return NextResponse.json({ error: 'Post not found' }, { status: 404 });
@@ -18,9 +19,10 @@ export async function GET(_: Request, { params }: RouteParams) {
 
 export async function PUT(request: Request, { params }: RouteParams) {
   try {
+    const { id } = await params;
     const { title, excerpt, content, coverImage } = await request.json();
 
-    const existing = await prisma.blogPost.findUnique({ where: { id: Number(params.id) } });
+    const existing = await prisma.blogPost.findUnique({ where: { id: Number(id) } });
 
     if (!existing) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
@@ -46,7 +48,8 @@ export async function PUT(request: Request, { params }: RouteParams) {
 
 export async function DELETE(_: Request, { params }: RouteParams) {
   try {
-    await prisma.blogPost.delete({ where: { id: Number(params.id) } });
+    const { id } = await params;
+    await prisma.blogPost.delete({ where: { id: Number(id) } });
     return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ error: 'Post not found' }, { status: 404 });

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 
 interface BlogPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -12,7 +12,8 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogDetailPage({ params }: BlogPageProps) {
-  const post = await prisma.blogPost.findUnique({ where: { slug: params.slug } });
+  const { slug } = await params;
+  const post = await prisma.blogPost.findUnique({ where: { slug } });
 
   if (!post) {
     notFound();
